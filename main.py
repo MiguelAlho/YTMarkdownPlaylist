@@ -11,14 +11,12 @@ from yt_dlp.utils import parse_qs
 
 def source_playlist_metadata(args, outputs_dir):
     # Extract playlist ID from the URL
-    log(f"Raw playlist URL: {args.playlist_url}", args.silent)  # Debugging log
     parsed_url = urlparse(args.playlist_url)
     log(f"Parsed URL: {parsed_url}", args.silent)  # Debugging log
 
     # Extract playlist ID from the URL manually
     query_string = parsed_url.query
     query_params = {param.split('=')[0]: param.split('=')[1] for param in query_string.split('&') if '=' in param}
-    log(f"Manually parsed query parameters: {query_params}", args.silent)  # Debugging log
     playlist_id = query_params.get('list')
     log(f"Manually parsed playlist ID: {playlist_id}", args.silent)  # Debugging log
     if not playlist_id:
