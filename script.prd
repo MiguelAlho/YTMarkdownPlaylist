@@ -1,0 +1,19 @@
+# Requirements
+
+The repo contains a script to process Youtube playlists. Output will be a set of metadata files, and markdown and html files that can be imported into static pages or Confluence for training.
+
+
+Given a Youtube playlist URL or ID, the script should download the playlist metadata. An output folder in /outputs should be created for the playlist, based on the playlist ID, to store any files related to the playlist. We call this the staging folder.
+
+Once the staging folder has been created. The playlist metadata should be parsed and stored as JSON in the staging folder. Then, the video listing should be iterated on , and the metadata for each video pulled and persisted as JSON in the folder. 
+
+The video metadata should include video file links (in an embeddable format), titles, descriptions, and, if possible transcripts, english transcripts for each video.
+
+Once all the metadata has been collected, the script should process it and produce a markdown file, in Confluence format, so that the playlist can be embeded into a Confluence Wiki. The generated page should facilitate a user to go through the playlist, view notes and time stamps on the videos, and add comments to each item in the playlist.
+
+# Constraints
+
+* script should be written in python
+* the script should allow collecting any required arguments
+* any missing Requirements should be requested from the user as the process proceeds
+* each step through the script should log to the console, unless a silent argument is added to the script call.
