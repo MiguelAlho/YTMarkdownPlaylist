@@ -15,3 +15,8 @@ def save_json_file(data, file_path, silent):
     with open(file_path, "w") as f:
         json.dump(data, f, indent=4)
     log(f"Data saved to: {file_path}", silent)
+
+def format_duration(duration):
+    if duration:
+        return f"{duration // 3600}h {(duration % 3600) // 60}m {duration % 60}s"
+    return None
