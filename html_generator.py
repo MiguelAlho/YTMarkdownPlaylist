@@ -24,6 +24,18 @@ def generate_html(playlist_metadata, output_dir):
             .copy-button:hover { background-color: #0056b3; }
             .transcript-header { display: flex; justify-content: space-between; align-items: center; }
             .transcript-header h2 { margin: 0; }
+            .remove-highlight {
+                background: none;
+                border: none;
+                color: red;
+                cursor: pointer;
+                margin-left: 5px;
+                font-size: 14px;
+                vertical-align: middle;
+            }
+            .remove-highlight:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -70,7 +82,7 @@ def generate_html(playlist_metadata, output_dir):
             }
             function copySelectedBlocks() {
                 const highlightedSpans = document.querySelectorAll('.highlighted');
-                const markdown = Array.from(highlightedSpans).map(span => `* ${span.textContent}`).join('\\n');
+                const markdown = Array.from(highlightedSpans).map(span => `* ${span.childNodes[0].textContent}`).join('\\n');
                 navigator.clipboard.writeText(markdown).then(() => alert('Copied to clipboard!'));
             }
             function highlightSelection() {
@@ -79,7 +91,19 @@ def generate_html(playlist_metadata, output_dir):
                     const range = selection.getRangeAt(0);
                     const span = document.createElement('span');
                     span.classList.add('highlighted');
+
+                    // Add an 'X' icon to deselect the highlighted text
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'X';
+                    removeButton.classList.add('remove-highlight');
+                    removeButton.onclick = function() {
+                        span.replaceWith(...span.childNodes);
+                        removeButton.remove();
+                    };
+
+                    // Surround the selected content first
                     range.surroundContents(span);
+                    span.appendChild(removeButton);
                     selection.removeAllRanges();
                 }
             }
