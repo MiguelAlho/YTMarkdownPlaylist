@@ -9,7 +9,9 @@ def generate_html(playlist_metadata, output_dir):
         f.write("<html>\n<head>\n")
         f.write(f"<title>{playlist_metadata['title']}</title>\n")
         f.write("<style>\n")
-        f.write("body { font-family: Arial, sans-serif; line-height: 1.6; display: flex; flex-direction: row; }\n")
+        f.write("body { font-family: Arial, sans-serif; line-height: 1.6; display: flex; flex-direction: column; height: 100vh; margin: 0; }\n")
+        f.write(".header { background-color: #333; color: white; padding: 10px; text-align: center; }\n")
+        f.write(".content { display: flex; flex: 1; flex-direction: row; }\n")
         f.write(".left-column { width: 20%; padding: 10px; background-color: #f9f9f9; overflow-y: auto; }\n")
         f.write(".middle-column { width: 60%; padding: 10px; }\n")
         f.write(".right-column { width: 20%; padding: 10px; background-color: #f9f9f9; overflow-y: auto; }\n")
@@ -18,9 +20,16 @@ def generate_html(playlist_metadata, output_dir):
         f.write("</style>\n")
         f.write("</head>\n<body>\n")
 
+        # Top header bar with playlist title
+        f.write("<div class='header'>\n")
+        f.write(f"<h1>{playlist_metadata['title']}</h1>\n")
+        f.write("</div>\n")
+
+        # Content area with three columns
+        f.write("<div class='content'>\n")
+
         # Left column: Playlist video list
         f.write("<div class='left-column'>\n")
-        f.write(f"<h2>{playlist_metadata['title']}</h2>\n")
         for video in playlist_metadata['videos']:
             f.write(f"<p><a href='#' onclick='showVideo(\"{video['video_id']}\")'>{video['title']}</a></p>\n")
         f.write("</div>\n")
@@ -38,6 +47,8 @@ def generate_html(playlist_metadata, output_dir):
         f.write("<h2>Transcript</h2>\n")
         f.write("<p>Select a video to view its transcript.</p>\n")
         f.write("</div>\n")
+        f.write("</div>\n")
+
         f.write("</div>\n")
 
         # Add JavaScript for interactivity
