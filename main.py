@@ -8,6 +8,7 @@ import requests
 from urllib.parse import urlparse
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
 from yt_dlp.utils import parse_qs
+from html_generator import generate_html
 
 def source_playlist_metadata(args, outputs_dir):
     # Extract playlist ID from the URL
@@ -92,6 +93,10 @@ def main():
     # Generate markdown file
     markdown_file = generate_markdown(playlist_metadata, os.path.join(outputs_dir, playlist_metadata['playlist_id']))
     log(f"Markdown file generated at: {markdown_file}", args.silent)
+
+    # Generate HTML file
+    html_file = generate_html(playlist_metadata, os.path.join(outputs_dir, playlist_metadata['playlist_id']))
+    log(f"HTML file generated at: {html_file}", args.silent)
 
 if __name__ == "__main__":
     main()

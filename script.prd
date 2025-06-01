@@ -9,7 +9,12 @@ Once the staging folder has been created. The playlist metadata should be parsed
 
 The video metadata should include video file links (in an embeddable format), titles, descriptions, and, if possible transcripts, english transcripts for each video.
 
-Once all the metadata has been collected, the script should process it and produce a markdown file, in Confluence format, so that the playlist can be embeded into a Confluence Wiki. The generated page should facilitate a user to go through the playlist, view notes and time stamps on the videos, and add comments to each item in the playlist.
+Once all the metadata has been collected, the script should process it and produce:
+* a standard markdown file, with embedded videos, to allow for studying the playlist
+* a markdown file in Confluence format, so that the playlist can be embedded into a Confluence Wiki. 
+* a HTML page with embedded videos
+
+The generated pages should facilitate a user to go through the playlist, view notes and time stamps on the videos, and add comments to each item in the playlist.
 
 # Constraints
 
@@ -17,3 +22,6 @@ Once all the metadata has been collected, the script should process it and produ
 * the script should allow collecting any required arguments
 * any missing Requirements should be requested from the user as the process proceeds
 * each step through the script should log to the console, unless a silent argument is added to the script call.
+* when testing, the script should be run in a venv
+* any time a package is added with pip, it must be recorded in the requirements.txt file
+s
