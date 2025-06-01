@@ -13,8 +13,8 @@ def generate_html(playlist_metadata, output_dir):
             .content { display: flex; flex: 1; flex-direction: row; }
             .left-column { width: 20%; padding: 10px; background-color: #f9f9f9; overflow-y: auto; height: 80vh; }
             .middle-column { width: 40%; padding: 10px; display: flex; flex-direction: column; }
-            .video-player { height: 315px; margin-bottom: 10px; }
-            .video-description { overflow-y: auto; background-color: #f1f1f1; padding: 10px; }
+            .video-player { height: 315px; margin-bottom: 20px; }
+            .video-description { height:40vh; overflow-y: auto; background-color: #f1f1f1; padding: 10px; }
             .right-column { width: 40%; padding: 10px; background-color: #f9f9f9; overflow-y: auto; height: 80vh; }
             .video { margin-bottom: 20px; }
             .thumbnail { max-width: 100%; height: auto; }
