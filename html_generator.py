@@ -45,7 +45,7 @@ def generate_html(playlist_metadata, output_dir):
         <div class="content">
             <div class="left-column">
                 {% for video in playlist_metadata.videos %}
-                    <p>{{ loop.index }}. <a href="#" onclick="showVideo('{{ video.video_id }}')">{{ video.title }}</a></p>
+                    <p>{{ loop.index }}. <a href="#" onclick="showVideo('{{ video.video_id }}', event)">{{ video.title }}</a></p>
                 {% endfor %}
             </div>
             <div class="middle-column">
@@ -69,7 +69,8 @@ def generate_html(playlist_metadata, output_dir):
         </div>
         <script>
             const playlistVideos = {{ playlist_metadata.videos | tojson }};
-            function showVideo(videoId) {
+            function showVideo(videoId, event) {
+                if (event) event.preventDefault();
                 const videoPlayer = document.getElementById('video-player');
                 const transcript = document.getElementById('transcript');
                 const videoDescription = document.getElementById('video-description');
@@ -117,7 +118,7 @@ def generate_html(playlist_metadata, output_dir):
     rendered_html = template.render(playlist_metadata=playlist_metadata)
 
     html_file = os.path.join(output_dir, f"p_{playlist_metadata['playlist_id']}_summary.html")
-    with open(html_file, "w") as f:
+    with open(html_file, "w", encoding="utf-8") as f:
         f.write(rendered_html)
 
     return html_file
