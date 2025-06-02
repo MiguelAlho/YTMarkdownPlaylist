@@ -35,7 +35,7 @@ def source_playlist_metadata(args, outputs_dir):
 def generate_markdown(playlist_metadata, output_dir):
     markdown_file = os.path.join(output_dir, f"p_{playlist_metadata['playlist_id']}_summary.md")
 
-    with open(markdown_file, "w") as f:
+    with open(markdown_file, "w", encoding="utf-8") as f:
         # Write playlist details
         f.write(f"# {playlist_metadata['title']}\n\n")
         f.write(f"**Description:** {playlist_metadata['description']}\n\n")
