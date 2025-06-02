@@ -19,6 +19,7 @@ def generate_confluence_markdown(playlist_metadata, output_dir):
             anchor = f"video-{idx}"
             f.write(f"{idx}. [{video['title']}](#{anchor})\n")
 
+        f.write("\n---\n\n")
         f.write("\n## Videos\n\n")
         for idx, video in enumerate(playlist_metadata['videos'], 1):
             f.write(f"---\n")
